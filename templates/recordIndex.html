@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <br>
+ <div class="container">
+  <table class="table">
+   <thead class="thead-dark">
+    <tr>
+      <th>胸</th>
+    </tr>
+   </thead>
+   <tbody>
+    {% for menu in objects.chest %}
+    <tr>
+     <th scope="row">{{ menu }}<div class="float-right"><button type="button" class="btn btn-secondary btn-sm">更新</button> <button type="button" class="btn btn-secondary btn-sm">削除</button></div></th>
+    </tr>
+    {% endfor %}
+    <th>メニュー追加</th>
+   </tbody>
+   <thead class="thead-dark">
+    <tr>
+      <th>肩</th>
+    </tr>
+   </thead>
+   <tbody>
+    {% for menu in objects.shoulder %}
+    <tr>
+      <th scope="row">{{ menu }}<div class="float-right"><button type="button" class="btn btn-secondary btn-sm">更新</button> <button type="button" class="btn btn-secondary btn-sm">削除</button></div></th>
+    </tr>
+    {% endfor %}
+    <th>メニュー追加</th>
+   </tbody>
+   <thead class="thead-dark">
+    <tr>
+      <th>腕</th>
+    </tr>
+   </thead>
+   <tbody>
+    {% for menu in objects.arm %}
+    <tr>
+      <th scope="row">{{ menu }}<div class="float-right"><button type="button" class="btn btn-secondary btn-sm">更新</button> <button type="button" class="btn btn-secondary btn-sm">削除</button></div></th>
+    </tr>
+    {% endfor %}
+    <th>メニュー追加</th>
+   </tbody>
+   <thead class="thead-dark">
+    <tr>
+      <th>足</th>
+    </tr>
+   </thead>
+   <tbody>
+    {% for menu in objects.leg %}
+    <tr>
+      <th scope="row">{{ menu }}<div class="float-right"><button type="button" class="btn btn-secondary btn-sm">更新</button> <button type="button" class="btn btn-secondary btn-sm">削除</button></div></th>
+    </tr>
+    {% endfor %}
+    <th>メニュー追加</th>
+   </tbody>
+   <thead class="thead-dark">
+    <tr>
+      <th>背中</th>
+    </tr>
+   </thead>
+   <tbody>
+    {% for menu in objects.back %}
+    <tr>
+      <th scope="row">{{ menu }}<div class="float-right"><button type="button" class="btn btn-secondary btn-sm">更新</button> <button type="button" class="btn btn-secondary btn-sm">削除</button></div></th>
+    </tr>
+    {% endfor %}
+    <th>メニュー追加</th>
+   </tbody>
+   <thead class="thead-dark">
+    <tr>
+      <th>腹</th>
+    </tr>
+   </thead>
+   <tbody>
+    {% for menu in objects.abdomen %}
+    <tr>
+      <th scope="row">{{ menu }}<div class="float-right"><button type="button" class="btn btn-secondary btn-sm">更新</button> <button type="button" class="btn btn-secondary btn-sm">削除</button></div></th>
+    </tr>
+    {% endfor %}
+    <th>メニュー追加</th>
+   </tbody>
+
+  </table>
+ </div>
+{% endblock content %}
