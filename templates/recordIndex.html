@@ -12,20 +12,31 @@
    <tbody>
     {% for menu in objects.chest %}
     <tr>
-     <th scope="row">{{ menu }}<div class="float-right"><button type="button" class="btn btn-outline-success btn-sm">編集</button> <button type="button" class="btn btn-outline-danger btn-sm">削除</button></div></th>
+     <th scope="row">{{ menu }}<div class="float-right"><button type="button" class="btn btn-outline-danger btn-sm">編集 / 削除</button></th>
     </tr>
     {% endfor %}
     <th>
-     <form action="" method="POST">
-     <div class="input-group">
-       <input type="hidden" name="part" value="chest">
-       <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
+     {% if user.is_authenticated %}
+      <form action="" method="POST">
+      <div class="input-group">
+        <input type="hidden" name="part" value="chest">
+        <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="submit">追加</button>
+        </div>
+      </div>
+      {% csrf_token %}
+      </form>
+
+     {% else %}
+      <div class="input-group">
+       <input type="text" name="name" class="form-control" placeholder="メニューを入力するにはログインしてください" aria-label="" aria-describedby="basic-addon" readonly>
        <div class="input-group-append">
-         <button class="btn btn-outline-primary" type="submit">追加</button>
+         <button class="btn btn-outline-primary" type="button">ログイン</button>
        </div>
      </div>
-     {% csrf_token %}
-     </form>
+      {% endif %}
+
     </th>
    </tbody>
    <thead class="thead-dark">

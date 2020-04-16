@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth import authenticate, login
 from .models import Menu
 from collections import defaultdict
 from . import PARTS
@@ -38,3 +39,14 @@ def addMenuFunc(request, part = None):
             "part" : part
             }
     return render(request, "addMenu.html", contexts)
+
+def loginFunc(request):
+    if request.method == "POST":
+        postedUserName = request.POST["username"]
+        postedPassword = request.POST["password"]
+        user = authenticate(request, username = postedUserName, password = postedPassword)
+        if user is not None:
+            login(request, user)
+            return redirect("recordIndex")
+
+    return render(request, "login.html")
