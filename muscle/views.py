@@ -4,7 +4,10 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Menu
 from collections import defaultdict
 from . import PARTS
-from .forms import AddMenuForm
+from django.views import generic
+from django.urls import reverse_lazy
+from .forms import EditForm, AddMenuForm
+from django.shortcuts import get_object_or_404
 
 def recordIndexFunc(request):
     form = AddMenuForm(request.POST or None)
@@ -14,7 +17,7 @@ def recordIndexFunc(request):
 
     objects = {}
     for part in PARTS:
-        objects[part] = Menu.objects.filter(part = part)
+        objects[part[0]] = Menu.objects.filter(part = part[0])
 
     contexts = {
             "objects" : objects
@@ -49,3 +52,32 @@ def loginFunc(request):
 def logoutFunc(request):
     logout(request)
     return redirect("recordIndex")
+
+def editFunc(request, pk):
+    menu = get_object_or_404(Menu, pk = pk)
+    form = AddMenuForm(request.POST or None, instance=menu)
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect("recordIndex")
+
+    obj = Menu.objects.get(pk = pk)
+    parts = []
+    for part in PARTS:
+        if part[0] != obj.part:
+            parts.append(part)
+        else:
+            obj.part = part
+
+    context = {
+            "object" : obj, 
+            "pk" : pk,
+            "parts" : parts
+            }
+    return render(request, "edit.html", context)
+
+
+def deleteFunc(request, pk):
+    obj = Menu.objects.get(pk = pk)
+    obj.delete()
+    return redirect("recordIndex")
+
