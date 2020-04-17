@@ -30,9 +30,11 @@
 
      {% else %}
       <div class="input-group">
-       <input type="text" name="name" class="form-control" placeholder="メニューを入力するにはログインしてください" aria-label="" aria-describedby="basic-addon" readonly>
+       <input type="text" name="name" class="form-control" placeholder="メニューを追加するにはログインしてください" aria-label="" aria-describedby="basic-addon" readonly>
        <div class="input-group-append">
+        <a href="{% url 'login' %}">
          <button class="btn btn-outline-primary" type="button">ログイン</button>
+        </a>
        </div>
      </div>
       {% endif %}
