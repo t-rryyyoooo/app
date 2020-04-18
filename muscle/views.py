@@ -6,7 +6,7 @@ from collections import defaultdict
 from . import PARTS
 from django.views import generic
 from django.urls import reverse_lazy, reverse
-from .forms import EditForm, AddMenuForm
+from .forms import AddMenuForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 
