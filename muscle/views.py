@@ -16,12 +16,13 @@ def recordIndexFunc(request):
         form.save()
         return redirect("recordIndex")
 
-    objects = {}
+    objects = []
     for part in PARTS:
-        objects[part[0]] = Menu.objects.filter(part = part[0])
+        obj = Menu.objects.filter(part = part[0])
+        objects.append({"en" : part[0], "ja" : part[1], "menus" : obj })
 
     contexts = {
-            "objects" : objects
+            "objects" : objects, 
             }
 
     return render(request, "recordIndex.html", contexts)

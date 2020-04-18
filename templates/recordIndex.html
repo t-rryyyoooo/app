@@ -4,274 +4,51 @@
  <br>
  <div class="container">
   <table class="table">
-   <thead class="thead-dark">
-    <tr>
-      <th>胸</th>
-    </tr>
-   </thead>
-   <tbody>
-    {% for menu in objects.chest %}
-    <tr>
-     <th scope="row">{{ menu }}
-      <div class="float-right">
-       <a href="{% url 'edit' menu.pk %}">
-       <button type="button" class="btn btn-outline-danger btn-sm">編集 / 削除</button>
-       </a>
-      </div>
-     </th>
-    </tr>
-    {% endfor %}
-    <th>
-     {% if user.is_authenticated %}
-      <form action="" method="POST">
-      <div class="input-group">
-        <input type="hidden" name="part" value="chest">
-        <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
-        <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="submit">追加</button>
-        </div>
-      </div>
-      {% csrf_token %}
-      </form>
-
-     {% else %}
-      <div class="input-group">
-       <input type="text" name="name" class="form-control" placeholder="メニューを追加するにはログインしてください" aria-label="" aria-describedby="basic-addon" readonly>
-       <div class="input-group-append">
-        <a href="{% url 'login' %}">
-         <button class="btn btn-outline-primary" type="button">ログイン</button>
+   {% for p in objects %}
+    <thead class="thead-dark">
+     <tr>
+      <th>{{ p.ja }}</th>
+     </tr>
+    </thead>
+    <tbody>
+     {% for menu in p.menus %}
+     <tr>
+      <th scope="row">{{ menu }}
+       <div class="float-right">
+        <a href="{% url 'edit' menu.pk %}">
+        <button type="button" class="btn btn-outline-danger btn-sm">編集 / 削除</button>
         </a>
        </div>
-     </div>
-      {% endif %}
+      </th>
+     </tr>
+     {% endfor %}
+     <th>
+      {% if user.is_authenticated %}
+       <form action="" method="POST">
+       <div class="input-group">
+        <input type="hidden" name="part" value={{ p.en }}>
+         <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
+         <div class="input-group-append">
+           <button class="btn btn-outline-primary" type="submit">追加</button>
+         </div>
+       </div>
+       {% csrf_token %}
+       </form>
 
-    </th>
-   </tbody>
-
-   <thead class="thead-dark">
-    <tr>
-      <th>肩</th>
-    </tr>
-   </thead>
-   <tbody>
-    {% for menu in objects.shoulder %}
-    <tr>
-     <th scope="row">{{ menu }}
-      <div class="float-right">
-       <a href="{% url 'edit' menu.pk %}">
-       <button type="button" class="btn btn-outline-danger btn-sm">編集 / 削除</button>
-       </a>
-      </div>
-     </th>
-    </tr>
-    {% endfor %}
-    <th>
-     {% if user.is_authenticated %}
-      <form action="" method="POST">
-      <div class="input-group">
-        <input type="hidden" name="part" value="shoulder">
-        <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
+      {% else %}
+       <div class="input-group">
+        <input type="text" name="name" class="form-control" placeholder="メニューを追加するにはログインしてください" aria-label="" aria-describedby="basic-addon" readonly>
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="submit">追加</button>
+         <a href="{% url 'login' %}">
+          <button class="btn btn-outline-primary" type="button">ログイン</button>
+         </a>
         </div>
       </div>
-      {% csrf_token %}
-      </form>
+       {% endif %}
 
-     {% else %}
-      <div class="input-group">
-       <input type="text" name="name" class="form-control" placeholder="メニューを追加するにはログインしてください" aria-label="" aria-describedby="basic-addon" readonly>
-       <div class="input-group-append">
-        <a href="{% url 'login' %}">
-         <button class="btn btn-outline-primary" type="button">ログイン</button>
-        </a>
-       </div>
-     </div>
-      {% endif %}
-
-    </th>
-   </tbody>
-
-   <thead class="thead-dark">
-    <tr>
-      <th>腕</th>
-    </tr>
-   </thead>
-   <tbody>
-    {% for menu in objects.arm %}
-    <tr>
-     <th scope="row">{{ menu }}
-      <div class="float-right">
-       <a href="{% url 'edit' menu.pk %}">
-       <button type="button" class="btn btn-outline-danger btn-sm">編集 / 削除</button>
-       </a>
-      </div>
      </th>
-    </tr>
-    {% endfor %}
-    <th>
-     {% if user.is_authenticated %}
-      <form action="" method="POST">
-      <div class="input-group">
-        <input type="hidden" name="part" value="arm">
-        <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
-        <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="submit">追加</button>
-        </div>
-      </div>
-      {% csrf_token %}
-      </form>
-
-     {% else %}
-      <div class="input-group">
-       <input type="text" name="name" class="form-control" placeholder="メニューを追加するにはログインしてください" aria-label="" aria-describedby="basic-addon" readonly>
-       <div class="input-group-append">
-        <a href="{% url 'login' %}">
-         <button class="btn btn-outline-primary" type="button">ログイン</button>
-        </a>
-       </div>
-     </div>
-      {% endif %}
-
-    </th>
-   </tbody>
-
-
-   <thead class="thead-dark">
-    <tr>
-      <th>背中</th>
-    </tr>
-   </thead>
-   <tbody>
-    {% for menu in objects.back %}
-    <tr>
-     <th scope="row">{{ menu }}
-      <div class="float-right">
-       <a href="{% url 'edit' menu.pk %}">
-       <button type="button" class="btn btn-outline-danger btn-sm">編集 / 削除</button>
-       </a>
-      </div>
-     </th>
-    </tr>
-    {% endfor %}
-    <th>
-     {% if user.is_authenticated %}
-      <form action="" method="POST">
-      <div class="input-group">
-        <input type="hidden" name="part" value="back">
-        <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
-        <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="submit">追加</button>
-        </div>
-      </div>
-      {% csrf_token %}
-      </form>
-
-     {% else %}
-      <div class="input-group">
-       <input type="text" name="name" class="form-control" placeholder="メニューを追加するにはログインしてください" aria-label="" aria-describedby="basic-addon" readonly>
-       <div class="input-group-append">
-        <a href="{% url 'login' %}">
-         <button class="btn btn-outline-primary" type="button">ログイン</button>
-        </a>
-       </div>
-     </div>
-      {% endif %}
-
-    </th>
-   </tbody>
-
-
-   <thead class="thead-dark">
-    <tr>
-      <th>足</th>
-    </tr>
-   </thead>
-   <tbody>
-    {% for menu in objects.leg %}
-    <tr>
-     <th scope="row">{{ menu }}
-      <div class="float-right">
-       <a href="{% url 'edit' menu.pk %}">
-       <button type="button" class="btn btn-outline-danger btn-sm">編集 / 削除</button>
-       </a>
-      </div>
-     </th>
-    </tr>
-    {% endfor %}
-    <th>
-     {% if user.is_authenticated %}
-      <form action="" method="POST">
-      <div class="input-group">
-        <input type="hidden" name="part" value="leg">
-        <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
-        <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="submit">追加</button>
-        </div>
-      </div>
-      {% csrf_token %}
-      </form>
-
-     {% else %}
-      <div class="input-group">
-       <input type="text" name="name" class="form-control" placeholder="メニューを追加するにはログインしてください" aria-label="" aria-describedby="basic-addon" readonly>
-       <div class="input-group-append">
-        <a href="{% url 'login' %}">
-         <button class="btn btn-outline-primary" type="button">ログイン</button>
-        </a>
-       </div>
-     </div>
-      {% endif %}
-
-    </th>
-   </tbody>
-
-
-   <thead class="thead-dark">
-    <tr>
-      <th>腹</th>
-    </tr>
-   </thead>
-   <tbody>
-    {% for menu in objects.abdomen %}
-    <tr>
-     <th scope="row">{{ menu }}
-      <div class="float-right">
-       <a href="{% url 'edit' menu.pk %}">
-       <button type="button" class="btn btn-outline-danger btn-sm">編集 / 削除</button>
-       </a>
-      </div>
-     </th>
-    </tr>
-    {% endfor %}
-    <th>
-     {% if user.is_authenticated %}
-      <form action="" method="POST">
-      <div class="input-group">
-        <input type="hidden" name="part" value="abdomen">
-        <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
-        <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="submit">追加</button>
-        </div>
-      </div>
-      {% csrf_token %}
-      </form>
-
-     {% else %}
-      <div class="input-group">
-       <input type="text" name="name" class="form-control" placeholder="メニューを追加するにはログインしてください" aria-label="" aria-describedby="basic-addon" readonly>
-       <div class="input-group-append">
-        <a href="{% url 'login' %}">
-         <button class="btn btn-outline-primary" type="button">ログイン</button>
-        </a>
-       </div>
-     </div>
-      {% endif %}
-
-    </th>
-   </tbody>
-
-
+    </tbody>
+   {% endfor %}
   </table>
  </div>
 {% endblock content %}
