@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-        path("recordIndex/", recordIndexFunc, name="recordIndex"), 
+        path("", recordIndexFunc, name="recordIndex"), 
         path("recordDetail/", recordDetailFunc, name="recordDetail"),
         path("login/", loginFunc, name="login"),
         path("logout/", logoutFunc, name="logout"), 
