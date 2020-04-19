@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from .models import Menu
+from .models import Part, Menu
 from collections import defaultdict
-from . import PARTS
 from django.views import generic
 from django.urls import reverse_lazy, reverse
 from .forms import AddMenuForm
@@ -17,9 +16,10 @@ def recordIndexFunc(request):
         return redirect("recordIndex")
 
     objects = []
-    for part in PARTS:
-        obj = Menu.objects.filter(part = part[0])
-        objects.append({"en" : part[0], "ja" : part[1], "menus" : obj })
+    parts = Part.objects.all()
+    for i, part in enumerate(parts):
+        obj = Menu.objects.filter(part = part)
+        objects.append({"part" : part, "menus" : obj, "i" : i + 1 })
 
     contexts = {
             "objects" : objects, 
@@ -31,14 +31,6 @@ def recordDetailFunc(request, part):
     objects = Menu.objects.get(part=part)
 
     return render(request, "recordDetail.html", {"objects" : objects})
-
-def addMenuFunc(request, part = None):
-
-    contexts = {
-            "form" : AddMenuForm(), 
-            "part" : part
-            }
-    return render(request, "addMenu.html", contexts)
 
 def loginFunc(request):
     if request.method == "POST":
@@ -63,13 +55,8 @@ def editFunc(request, pk):
         form.save()
         return redirect("recordIndex")
 
+    parts = Part.objects.all()
     obj = Menu.objects.get(pk = pk)
-    parts = []
-    for part in PARTS:
-        if part[0] != obj.part:
-            parts.append(part)
-        else:
-            obj.part = part
 
     context = {
             "object" : obj, 

@@ -4,14 +4,14 @@
  <br>
  <div class="container">
   <table class="table">
-   {% for p in objects %}
+   {% for obj in objects %}
     <thead class="thead-dark">
      <tr>
-      <th>{{ p.ja }}</th>
+      <th>{{ obj.part }}</th>
      </tr>
     </thead>
     <tbody>
-     {% for menu in p.menus %}
+     {% for menu in obj.menus %}
      <tr>
       <th scope="row">{{ menu }}
        <div class="float-right">
@@ -26,7 +26,7 @@
       {% if user.is_authenticated %}
        <form action="" method="POST">
        <div class="input-group">
-        <input type="hidden" name="part" value={{ p.en }}>
+        <input type="hidden" name="part" value="{{ obj.i }}">
          <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
          <div class="input-group-append">
            <button class="btn btn-outline-primary" type="submit">追加</button>
@@ -44,7 +44,7 @@
          </a>
         </div>
       </div>
-       {% endif %}
+     {% endif %}
 
      </th>
     </tbody>

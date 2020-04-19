@@ -7,10 +7,12 @@
   <tr><th><label for="id_name">名前</label></th><td><input type="text" name="name" value="{{ object.name }}" maxlength="20" class="form-control" required id="id_name"></td></tr>
 <tr><th><label for="id_part">部位</label></th><td><select name="part" class="form-control" required id="id_part">
 
-  <option value={{ object.part.0 }} selected>{{ object.part.1 }}</option>
-  <option value="">---------</option>
   {% for part in parts %}
-  <option value={{ part.0 }}>{{ part.1 }}</option>
+   {% if part == object.part %}
+    <option value={{ forloop.counter }} selected>{{ part }}</option>
+   {% else %}
+    <option value={{ forloop.counter }}>{{ part }}</option>
+   {% endif %}
   {% endfor %}
 
 </select></td></tr>
