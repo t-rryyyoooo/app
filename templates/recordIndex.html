@@ -26,7 +26,7 @@
       {% if user.is_authenticated %}
        <form action="" method="POST">
        <div class="input-group">
-        <input type="hidden" name="part" value="{{ obj.i }}">
+        <input type="hidden" name="part" value={{ obj.part.pk }}>
          <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
          <div class="input-group-append">
            <button class="btn btn-outline-primary" type="submit">追加</button>
