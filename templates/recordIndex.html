@@ -18,7 +18,7 @@
     <tbody>
      {% for menu in obj.menus %}
      <tr>
-      <th scope="row">{{ menu }}
+      <th scope="row"><a href="{% url 'recordDetail' menu.pk %}">{{ menu }}</a>
        <div class="float-right">
         <a href="{% url 'edit' menu.pk %}">
         <button type="button" class="btn btn-outline-danger btn-sm">編集 / 削除</button>

@@ -21,7 +21,7 @@ def recordIndexFunc(request):
 
     objects = []
     parts = Part.objects.all()
-    for i, part in enumerate(parts):
+    for part in parts:
         obj = Menu.objects.filter(part = part)
         objects.append({"part" : part, "menus" : obj})
 
@@ -35,16 +35,20 @@ def recordIndexFunc(request):
 def listFunc(request):
     return HttpResponse("Hello")
 
-def recordDetailFunc(request, part_pk , menu_pk):
+@login_required()
+def recordDetailFunc(request, menu_pk):
     form = AddRecordForm(request.POST or None)
+    print(form)
     if request.method == "POST" and form.is_valid():
         form.save()
         return redirect("list")
 
-    part = Menu.objects.get(pk=part_pk)
+    parts = Part.objects.all()
     menu = Menu.objects.get(pk=menu_pk)
+    part = Part.objects.get(pk=menu.part.pk)
 
     contexts = {
+            "parts" : parts, 
             "part" : part, 
             "menu" : menu
             }

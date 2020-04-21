@@ -9,4 +9,4 @@ class AddMenuForm(forms.ModelForm):
 class AddRecordForm(forms.ModelForm):
     class Meta:
         model = Record
-        fields = "__all__"
+        fields = ("part", "menu", "weight", "times")

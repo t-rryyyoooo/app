@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
         path("", recordIndexFunc, name="recordIndex"), 
         path("list", listFunc, name="list"), 
-        path("recordDetail/", recordDetailFunc, name="recordDetail"),
+        path("recordDetail/<int:menu_pk>/", recordDetailFunc, name="recordDetail"),
         path("login/", loginFunc, name="login"),
         path("logout/", logoutFunc, name="logout"), 
         path("edit/<int:pk>/",editFunc, name="edit"),
