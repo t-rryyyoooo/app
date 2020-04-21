@@ -3,6 +3,11 @@
 {% block content %}
  <br>
  <div class="container">
+  {% if valid == False %}
+  <div class="alert alert-danger" role="alert">
+    <strong>空白を入力したか、そのメニューは既に存在しています。</strong> 
+  </div>
+  {% endif %}
   <table class="table">
    {% for obj in objects %}
     <thead class="thead-dark">

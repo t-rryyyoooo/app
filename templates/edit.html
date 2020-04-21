@@ -9,9 +9,9 @@
 
   {% for part in parts %}
    {% if part == object.part %}
-    <option value={{ forloop.counter }} selected>{{ part }}</option>
+    <option value={{ part.pk }} selected>{{ part }}</option>
    {% else %}
-    <option value={{ forloop.counter }}>{{ part }}</option>
+    <option value={{ part.pk }}>{{ part }}</option>
    {% endif %}
   {% endfor %}
 
