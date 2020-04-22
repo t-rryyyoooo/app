@@ -52,7 +52,6 @@ def listFunc(request):
 @login_required()
 def recordDetailFunc(request, menu_pk):
     form = AddRecordForm(request.POST or None)
-    print(form)
     if request.method == "POST" and form.is_valid():
         form.save()
         return redirect("recordList")
