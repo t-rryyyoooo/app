@@ -25,7 +25,7 @@ SECRET_KEY = '56$dhsy)r8m4(p(3mf7)b0ktnn00j6_x(8ze8op7p!$-izrm!#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["153.127.46.157"]
 
 
 # Application definition
@@ -124,3 +124,4 @@ STATICFILES_DIRS = [
         ]
 
 LOGIN_URL = "/login/"
+STATIC_ROOT = "/var/www/static/"
