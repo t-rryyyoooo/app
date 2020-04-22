@@ -4,11 +4,17 @@
 <div class="container">
  <br>
  <form action="", method="POST">
-  <tr><th><label for="id_name">名前</label></th><td><input type="text" name="menu" value={{ menu }} maxlength="20" class="form-control" id="id_name" disabled></td></tr>
-  <tr><th><label for="id_part">部位</label></th><td><input type="text" name="part" value={{ part }} maxlength="20" class="form-control" id="id_part" disabled></td></tr>
+  <tr><th><label for="id_name">名前</label></th><td><input type="text" name="menu" value="{{ menu.pk }}" placeholder={{ menu }} maxlength="20" class="form-control" required id="id_name" readonly></td></tr>
+<tr><th><label for="id_part">部位</label></th><td><select name="part" class="form-control" required id="id_part">
+  {% for p in parts %}
+   {% if p == part %}
+    <option value={{ p.pk }} selected>{{ p }}</option>
+   {% else %}
+    <option value={{ p.pk }} disabled>{{ p }}</option>
+   {% endif %}
+  {% endfor %}
+</select></td></tr>
 
-  <input type="hidden" name="menu" value={{ menu.pk }} maxlength="20" class="form-control" id="id_name" readonly>
-  <input type="hidden" name="part" value={{ part.pk }} maxlength="20" class="form-control" id="id_name" readonly>
 <tr><th><label for="id_weight">重量（0.25kg 刻み）</label></th><td><input type="number" step="0.25" min="0" name="weight" maxlength="20" class="form-control" required id="id_weight"></td></tr>
 <tr><th><label for="id_times">回数</label></th><td><input type="number" min="0" name="times" maxlength="20" class="form-control" required id="id_times"></td></tr>
 
@@ -18,6 +24,5 @@
   <br>
   <button type="submit" class="btn btn-outline-primary mb-2">送信</button>
  </form>
-
 </div>
 {% endblock content %}

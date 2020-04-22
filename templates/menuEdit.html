@@ -7,10 +7,12 @@
   <tr><th><label for="id_name">名前</label></th><td><input type="text" name="name" value="{{ object.name }}" maxlength="20" class="form-control" required id="id_name"></td></tr>
 <tr><th><label for="id_part">部位</label></th><td><select name="part" class="form-control" required id="id_part">
 
-  <option value={{ object.part.0 }} selected>{{ object.part.1 }}</option>
-  <option value="">---------</option>
   {% for part in parts %}
-  <option value={{ part.0 }}>{{ part.1 }}</option>
+   {% if part == object.part %}
+    <option value={{ part.pk }} selected>{{ part }}</option>
+   {% else %}
+    <option value={{ part.pk }}>{{ part }}</option>
+   {% endif %}
   {% endfor %}
 
 </select></td></tr>
@@ -19,7 +21,7 @@
   <button type="submit" class="btn btn-outline-success mb-2">更新</button>
 
   <div class="float-right">
-   <a href="{% url 'delete' pk %}">
+   <a href="{% url 'menuDelete' pk %}">
    <button type="button" class="btn btn-outline-danger mb-2">削除</button>
    </a>
   </div>

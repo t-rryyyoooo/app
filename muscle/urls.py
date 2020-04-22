@@ -5,9 +5,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
         path("", recordIndexFunc, name="recordIndex"), 
-        path("recordDetail/", recordDetailFunc, name="recordDetail"),
+        path("recordList", listFunc, name="recordList"), 
+        path("recordDetail/<int:menu_pk>/", recordDetailFunc, name="recordDetail"),
         path("login/", loginFunc, name="login"),
         path("logout/", logoutFunc, name="logout"), 
-        path("edit/<int:pk>/",editFunc, name="edit"),
-        path("delete/<int:pk>/",deleteFunc , name="delete") 
+        path("menuEdit/<int:pk>/",menuEditFunc, name="menuEdit"),
+        path("recordEdit/<int:pk>/",recordEditFunc, name="recordEdit"),
+        path("menuDelete/<int:pk>/",menuDeleteFunc , name="menuDelete"),
+        path("recordDelete/<int:pk>/",recordDeleteFunc , name="recordDelete") 
         ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

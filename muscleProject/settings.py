@@ -25,7 +25,7 @@ SECRET_KEY = '56$dhsy)r8m4(p(3mf7)b0ktnn00j6_x(8ze8op7p!$-izrm!#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["153.127.46.157"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'muscleProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, "templates"],
+        'DIRS': [BASE_DIR, "templates", "templatetags"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
