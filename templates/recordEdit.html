@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+ <br>
+ <form action="", method="POST">
+  <tr><th><label for="id_name">名前</label></th><td><input type="text" name="menu" value={{ object.menu }} maxlength="20" class="form-control" id="id_name" disabled></td></tr>
+  <tr><th><label for="id_part">部位</label></th><td><input type="text" name="part" value={{ object.part }} maxlength="20" class="form-control" id="id_part" disabled></td></tr>
+
+  <input type="hidden" name="menu" value={{ object.menu.pk }} maxlength="20" class="form-control" readonly>
+  <input type="hidden" name="part" value={{ object.part.pk }} maxlength="20" class="form-control" readonly>
+  <tr><th><label for="id_weight">重量（0.25kg 刻み）</label></th><td><input type="number" step="0.25" min="0" name="weight" maxlength="20" class="form-control" required id="id_weight" value={{ object.weight }}></td></tr>
+  <tr><th><label for="id_times">回数</label></th><td><input type="number" min="0" name="times" maxlength="20" class="form-control" required id="id_times" value={{ object.times }}></td></tr>
+
+<tr><th><label for="id_times">日付</label></th><td><input type="date" name="date" maxlength="20" class="form-control" required id="id_times" value={{ object.date|date:"Y-m-d" }}></td></tr>
+
+
+  {% csrf_token %}
+  <br>
+  <button type="submit" class="btn btn-outline-success mb-2">更新</button>
+
+  <div class="float-right">
+   <a href="{% url 'recordDelete' pk %}">
+   <button type="button" class="btn btn-outline-danger mb-2">削除</button>
+   </a>
+  </div>
+ </form>
+</div>
+
+{% endblock content %}

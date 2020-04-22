@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% regroup objects by part as objects_by_part %}
  <br>
  <div class="container">
   {% if valid == False %}
@@ -9,18 +10,18 @@
   </div>
   {% endif %}
   <table class="table">
-   {% for obj in objects %}
+   {% for object in objects_by_part %}
     <thead class="thead-dark">
      <tr>
-      <th>{{ obj.part }}</th>
+      <th>{{ object.grouper}}</th>
      </tr>
     </thead>
     <tbody>
-     {% for menu in obj.menus %}
+     {% for obj in object.list%}
      <tr>
-      <th scope="row"><a href="{% url 'recordDetail' menu.pk %}">{{ menu }}</a>
+      <th scope="row"><a href="{% url 'recordDetail' obj.pk %}">{{ obj }}</a>
        <div class="float-right">
-        <a href="{% url 'menuEdit' menu.pk %}">
+        <a href="{% url 'edit' obj.pk %}">
         <button type="button" class="btn btn-outline-danger btn-sm">編集 / 削除</button>
         </a>
        </div>
@@ -31,7 +32,7 @@
       {% if user.is_authenticated %}
        <form action="" method="POST">
        <div class="input-group">
-        <input type="hidden" name="part" value={{ obj.part.pk }}>
+        <input type="hidden" name="part" value={{ object.grouper.pk }}>
          <input type="text" name="name" class="form-control" placeholder="メニューを入力" aria-label="" aria-describedby="basic-addon1">
          <div class="input-group-append">
            <button class="btn btn-outline-primary" type="submit">追加</button>

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load common %}
+
+{% block content %}
+<br>
+<div class="container">
+{% regroup records by date as records_by_date %}
+{% for record in records_by_date %}
+ <div class="card mb-3">
+  <h2 class="card-header bg-dark text-white">{{ record.grouper }}</h4>
+   <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>部位</th>
+          <th>メニュー</th>
+          <th>重量×回数</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+       <tr>
+       {% set part = "" %}
+       {% set menu = "" %}
+       {% for r in record.list %}
+        {% if part == r.part %}
+         <th scope="row"> </th>
+        {% else %}
+         <th scope="row">{{ r.part }}</th>
+         {% set part = r.part %}
+        {% endif %}
+        {% if menu == r.menu %}
+         <th> </th>
+        {% else %}
+         <th>{{ r.menu }}</th>
+         {% set menu = r.menu %}
+        {% endif %}
+        <td>{{ r.weight }}kg×{{ r.times }}回</td>
+        <td>
+        <a href="{% url 'recordEdit' r.pk %}">
+        <button type="button" class="btn btn-outline-danger btn-sm">編集 / 削除</button>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+   </div>
+ </div>
+
+{% endfor %}
+
+</div>
+{% endblock %}
+
