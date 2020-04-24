@@ -10,8 +10,15 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.db.models.query import QuerySet
+from . import PARTS
 
 def recordIndexFunc(request):
+    parts = list(Part.objects.all().values_list("name", flat=True))
+    for part in PARTS:
+        if part not in parts:
+            Part.objects.create(name=part)
+            pass
+
     form = AddMenuForm(request.POST or None)
     valid = True
     if request.method == "POST": 
@@ -72,6 +79,7 @@ def recordDetailFunc(request, menu_pk):
     return render(request, "recordDetail.html", contexts)
 
 def loginFunc(request):
+    valid = True
     if request.method == "POST":
         postedUserName = request.POST["username"]
         postedPassword = request.POST["password"]
@@ -79,8 +87,15 @@ def loginFunc(request):
         if user is not None:
             login(request, user)
             return redirect("recordIndex")
+        else:
+            valid = False
 
-    return render(request, "login.html")
+    contexts = {
+            "valid" : valid
+            }
+
+
+    return render(request, "login.html", contexts)
 
 def logoutFunc(request):
     logout(request)

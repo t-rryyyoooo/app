@@ -12,5 +12,5 @@ urlpatterns = [
         path("menuEdit/<int:pk>/",menuEditFunc, name="menuEdit"),
         path("recordEdit/<int:pk>/",recordEditFunc, name="recordEdit"),
         path("menuDelete/<int:pk>/",menuDeleteFunc , name="menuDelete"),
-        path("recordDelete/<int:pk>/",recordDeleteFunc , name="recordDelete") 
+        path("recordDelete/<int:pk>/",recordDeleteFunc , name="recordDelete") , 
         ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Menu, Record
+from .models import Menu, Record, Part
 
 class AddMenuForm(forms.ModelForm):
     class Meta:

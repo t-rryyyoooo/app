@@ -14,7 +14,10 @@
   </head>
   <body>
    <form class="form-signin" method="POST" action=''>{% csrf_token %}
-     <h1 class="h3 mb-3 font-weight-normal">ログインしてください</h1>
+     <h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
+     {% if valid == False %}
+     <p class="text-danger">名前かパスワードが正しくありません。</p>
+     {% endif %}
      <label for="inputEmail" class="sr-only">名前</label>
      <input type="text" id="inputEmail" class="form-control" name='username' placeholder="username" required autofocus>
      <label for="inputPassword" class="sr-only">パスワード</label>
