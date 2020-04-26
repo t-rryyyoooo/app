@@ -13,4 +13,6 @@ urlpatterns = [
         path("recordEdit/<int:pk>/",recordEditFunc, name="recordEdit"),
         path("menuDelete/<int:pk>/",menuDeleteFunc , name="menuDelete"),
         path("recordDelete/<int:pk>/",recordDeleteFunc , name="recordDelete") , 
+        path("calendar/", MonthCalender.as_view(), name="calendar"),
+        path("calendar/<int:year>/<int:month>/", MonthCalender.as_view(), name="calendar")
         ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

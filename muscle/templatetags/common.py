@@ -1,7 +1,11 @@
 from django import template
+from .. import PARTS, COLORS
 register = template.Library()
 
-
+@register.filter(name="remainder")
+def remainder(value, args):
+    return value % args
+    
 class SetVarNode(template.Node):
 
     def __init__(self, var_name, var_value):
@@ -28,3 +32,12 @@ def set_var(parser, token):
         raise template.TemplateSyntaxError("'set' tag must be of the form: {% set <var_name> = <var_value> %}")
 
     return SetVarNode(parts[1], parts[3])
+
+@register.filter(name="setColor")
+def setColor(part):
+    for p, c in zip(PARTS, COLORS):
+        if p == str(part):
+            print(c)
+            return c
+    
+

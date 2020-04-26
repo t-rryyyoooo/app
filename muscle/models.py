@@ -1,12 +1,12 @@
 from django.db import models
 from django.utils import timezone
+import datetime
 
 class Part(models.Model):
     name = models.CharField(max_length=8, unique=True)
 
     def __str__(self):
         return self.name
-
 
 class Menu(models.Model):
     name = models.CharField(max_length=20, unique=True)
@@ -24,5 +24,4 @@ class Record(models.Model):
 
     def __str__(self):
         return "{}kg * {}回".format(self.weight, self.times)
-
 

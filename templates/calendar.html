@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load common %}
+{% block content %}
+   <style>
+       .inner{
+        text-align: center;
+      }
+
+       .left{
+        float: left;
+        padding-left: 10px;
+        }
+
+       .right{
+        float: right;
+        padding-right: 10px;
+        }
+
+        table {
+            table-layout: fixed;
+        }
+
+        td > div {
+            height: 100px;
+            overflow: hidden;
+        }
+
+    </style>
+    <br>
+    
+    <div class="left">
+    <a href="{% url 'calendar' month_previous.year month_previous.month %}">
+     <button type="button" class="btn btn-outline-primary">次月</button></a>
+    </div>
+    <div class="right">
+    <a href="{% url 'calendar' month_next.year month_next.month %}">
+     <button type="button" class="btn btn-outline-primary">先月</button></a>
+    </div>
+    <h1 class="inner">{{ month_current | date:"Y年m月" }}</h1>
+    <br>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            {% for w in week_names %}
+                <th>{{ w }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for week_day_records in month_day_records %}
+            <tr>
+                {% for day, records in week_day_records.items %}
+                    {% if now == day %}
+                        <td class="table-success">
+                            {% else %}
+                        <td>
+                    {% endif %}
+
+                <div>
+                    {% if month_current.month != day.month %}
+                    <font color="C0C0C0">{{ day.day }}</font>
+                    {% else %}
+                     {% if forloop.counter|remainder:7 == 6 %}
+                      <font color="red">{{ day.day }}</font>
+                     {% elif forloop.counter|remainder:7 == 0 %}
+                      <font color="blue">{{ day.day }}</font>
+                     {% else %}
+                     {{ day.day }}
+                     {% endif %}
+                    {% endif %}
+
+                    <br>
+                    {% for record in records %}
+                    <span class="badge badge-{{ record | setColor }}">{{ record }}</span>
+                    {% endfor %}
+                </div>
+                </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

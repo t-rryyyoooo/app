@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.db.models.query import QuerySet
+from .mixins import MonthWithScheduleMixin
 from . import PARTS
 
 def recordIndexFunc(request):
@@ -145,3 +146,13 @@ def menuDeleteFunc(request, pk):
     obj.delete()
     return redirect("recordIndex")
 
+class MonthCalender(MonthWithScheduleMixin, generic.TemplateView):
+    template_name = 'calendar.html'
+    model = Record
+    date_field = "date"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        calendar_context = self.get_month_calendar()
+        context.update(calendar_context)
+        return context
