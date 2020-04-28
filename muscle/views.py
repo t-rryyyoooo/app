@@ -156,3 +156,24 @@ class MonthCalender(MonthWithScheduleMixin, generic.TemplateView):
         calendar_context = self.get_month_calendar()
         context.update(calendar_context)
         return context
+
+def recordDetailFromCalendarFunc(request, year, month, day):
+    """
+    query = Record.objects.all().query
+    query.group_by = ["date"]
+    records = QuerySet(query=query, model=Record).order_by("date").reverse()
+    """
+    #records = Record.objects.get(pk=pk).order_by("menu").reverse()
+    records = Record.objects.filter(
+            date__year = year, 
+            date__month = month, 
+            date__day = day
+            ).order_by("menu")
+
+    contexts = {
+            "records" : records
+            }
+    return render(request, "recordDetailFromCalendar.html", contexts)
+
+
+
