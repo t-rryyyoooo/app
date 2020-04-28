@@ -24,7 +24,7 @@
         {% if part == r.part %}
          <th scope="row"> </th>
         {% else %}
-         <th scope="row">{{ r.part }}</th>
+        <th scope="row" class="text-{{ r.part | setColor }}">{{ r.part }}</th>
          {% set part = r.part %}
         {% endif %}
         {% if menu == r.menu %}
