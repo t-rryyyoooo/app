@@ -19,12 +19,16 @@
         table {
             table-layout: fixed;
         }
+        td a{
+            display:block;
+            width:100%;
+            height:100%;
 
-        td > div {
+          } 
+        td  div {
             height: 100px;
             overflow: hidden;
         }
-
     </style>
     <br>
     
@@ -55,6 +59,10 @@
                             {% else %}
                         <td>
                     {% endif %}
+                 {% if records %}
+                 <a href="{% url 'recordDetailFromCalendar' month_current.year month_current.month day.day %}">
+                 {% else %}
+                 {% endif %}
 
                 <div>
                     {% if month_current.month != day.month %}
@@ -74,6 +82,7 @@
                     <span class="badge badge-{{ record | setColor }}">{{ record }}</span>
                     {% endfor %}
                 </div>
+                 </a>
                 </td>
                 {% endfor %}
             </tr>
