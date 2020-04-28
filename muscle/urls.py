@@ -11,6 +11,7 @@ urlpatterns = [
         path("logout/", logoutFunc, name="logout"), 
         path("menuEdit/<int:pk>/",menuEditFunc, name="menuEdit"),
         path("recordEdit/<int:pk>/",recordEditFunc, name="recordEdit"),
+        path("recordDetailFromCalendar/<int:year>/<int:month>/<int:day>/",recordDetailFromCalendarFunc, name="recordDetailFromCalendar"),
         path("menuDelete/<int:pk>/",menuDeleteFunc , name="menuDelete"),
         path("recordDelete/<int:pk>/",recordDeleteFunc , name="recordDelete") , 
         path("calendar/", MonthCalender.as_view(), name="calendar"),
