@@ -45,6 +45,13 @@ def recordIndexFunc(request):
 
     return render(request, "recordIndex.html", contexts)
 
+def recordListPerMenuFunc(request):
+    records = Record.objects.all().order_by("menu", "date").reverse()
+
+    contexts = {
+            "records" : records}
+    return render(request, "recordListPerMenu.html", contexts)
+
 def listFunc(request):
     """
     query = Record.objects.all().query

@@ -20,21 +20,17 @@
       </thead>
       <tbody>
        <tr>
-       {% set part = "" %}
-       {% set menu = "" %}
        {% for r in record.list %}
-        {% if part == r.part %}
-         <th scope="row"> </th>
-        {% else %}
-        <th scope="row" class="text-{{r.part | setColor }}">{{ r.part }}</th>
-         {% set part = r.part %}
-        {% endif %}
-        {% if menu == r.menu %}
-         <th> </th>
-        {% else %}
-         <th>{{ r.menu }}</th>
-         {% set menu = r.menu %}
-        {% endif %}
+        <th scope="row" class="text-{{r.part | setColor }}">
+        {% ifchanged r.part %}
+        {{ r.part }}
+        {% endifchanged %}
+        </th>
+         <th>
+         {% ifchanged r.menu %}
+         {{ r.menu }}
+         {% endifchanged %}
+         </th>
         <td>{{ r.weight }}kg×{{ r.times }}回</td>
         <td>
         <a href="{% url 'recordEdit' r.pk %}">
