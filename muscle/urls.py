@@ -5,8 +5,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
         path("", recordIndexFunc, name="recordIndex"), 
-        path("recordList", listFunc, name="recordList"), 
-        path("recordListPerMenu", recordListPerMenuFunc, name="recordListPerMenu"), 
+        path("recordList/", listFunc, name="recordList"), 
+        path("recordListPerMenu/", recordListPerMenuFunc, name="recordListPerMenu"), 
+        path("recordListPerMenu/<int:part_pk>/", recordListPerMenuFunc, name="recordListPerMenu"), 
         path("recordDetail/<int:menu_pk>/", recordDetailFunc, name="recordDetail"),
         path("login/", loginFunc, name="login"),
         path("logout/", logoutFunc, name="logout"), 

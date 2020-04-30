@@ -4,22 +4,16 @@
 {% block content %}
 <br>
 <div class="container">
-<ul class="nav nav-tabs">
- {% for part in parts %}
-  <li class="nav-item">
- {% if part_pk == part.pk %}
- <a class="nav-link active text-{{ part.name | setColor }}" href="{% url 'recordListPerMenu' part.pk %}"><strong>{{ part.name }}</strong></a>
- {% else %}
-   <a class="nav-link text-{{ part.name | setColor }}" href="{% url 'recordListPerMenu' part.pk %}"><strong>{{ part.name }}</strong></a>
- {% endif %}
-  </li>
- {% endfor %}
-</ul>
-<br>
-  {% regroup records by menu as records_by_menu %}
-  {% for record in records_by_menu %}
+{% regroup records by part as records_by_part %}
+
+ {% for record_by_part in records_by_part %}
+  <div class="card mb-3">
+   <h2 class="card-header bg-{{ record_by_part.grouper | setColor }} text-white">{{ record_by_part.grouper }}</h2>
+    <div class="card-body">
+  {% regroup record_by_part.list by menu as record_by_part_by_menu %}
+  {% for record in record_by_part_by_menu %}
    <div class="card mb-3">
-    <h4 class="card-header bg-dark text-white">{{ record.grouper }}</h4>
+    <h4 class="card-header bg-light text-black">{{ record.grouper }}</h4>
      <div class="card-body">
       <table class="table">
         <thead>
@@ -47,12 +41,12 @@
          {% endfor %}
         </tbody>
        </table>
-       </div>
      </div>
+  </div>
  {% endfor %}
- 
-
-
+    </div>
+   </div>
+{% endfor %}
 </div>
 {% endblock %}
 
