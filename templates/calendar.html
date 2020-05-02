@@ -60,7 +60,7 @@
                         <td>
                     {% endif %}
                  {% if records %}
-                 <a href="{% url 'recordDetailFromCalendar' month_current.year month_current.month day.day %}">
+                 <a href="{% url 'recordDetailFromCalendar' day.year day.month day.day %}">
                  {% else %}
                  {% endif %}
 
